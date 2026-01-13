@@ -1,9 +1,10 @@
+
 # Event Weather Guard
 
 **“Will It Rain During My Event?”**
 
-Event Weather Guard is a backend service that analyzes **hourly weather forecasts** for outdoor events and determines whether the event is **Safe**, **Risky**, or **Unsafe** based on **deterministic and explainable rules**.
-If the event is risky or unsafe, the service also recommends a **better time window within the next 24 hours**.
+Event Weather Guard is a backend service that analyzes **hourly weather forecasts** for outdoor events and determines whether the event is **Safe**, **Risky**, or **Unsafe** using **deterministic and explainable rules**.
+If the event is risky or unsafe, the service recommends a **better time window within the next 24 hours**.
 
 ---
 
@@ -68,23 +69,24 @@ Server runs at:
 ```
 http://127.0.0.1:8000
 ```
-
+You may check server running on console accordingly.
 ---
 
 ## API Documentation
 
-#FastAPI provides built-in documentation:
+###FastAPI provides built-in documentation:
 
-    ##This are port number running you may verify with your console and write/docs with it for Swagger UI
+    ## Note-Check console for server running port check and then apply /docs ahead to get swagger UI
+
 * **Swagger UI**
-  ->[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+  [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
 * **OpenAPI JSON**
-  ->[http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json)
+  [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json)
 
 ---
 
-##  API Endpoint
+## API Endpoint
 
 ### `POST /event-forecast`
 
@@ -140,7 +142,7 @@ ISO-8601, 24-hour format (`YYYY-MM-DDTHH:MM:SS`)
 ## Project Workflow
 
 1. Client sends event details (location + time window)
-2. Hourly forecast data is fetched from **Open-Meteo**
+2. Hourly forecast data is fetched from Open-Meteo
 3. Forecast hours are filtered to match the event window
 4. Weather rules are evaluated hour-by-hour
 5. Severity score is calculated
@@ -184,8 +186,7 @@ Triggered if **no Unsafe rules**, but any hour has:
 ### Safe
 
 * None of the above conditions apply across the event window
-
-Worst-case condition dominates the final classification.
+* Worst-case condition dominates the final classification
 
 ---
 
@@ -217,7 +218,7 @@ Applied **only if event is Risky or Unsafe**.
 Logic:
 
 1. Scan hourly forecast for the **next 24 hours**
-2. Apply same safety rules to each hour
+2. Apply the same safety rules to each hour
 3. Search for a **continuous block of safer hours**
 4. Select the best available window based on:
 
@@ -248,6 +249,33 @@ curl -X POST http://127.0.0.1:8000/event-forecast \
 
 ---
 
+## Console Logging (Observability)
+
+The service includes **lightweight console logging** for observability and debugging.
+
+### What is logged
+
+* Incoming event forecast requests
+* Classification results (Safe / Risky / Unsafe)
+* Severity score outcomes
+* Alternate time window recommendations
+* Validation and processing errors
+
+### Why logging is used
+
+* Trace request flow and decision-making
+* Debug rule evaluation and recommendations
+* Improve transparency during local testing
+
+### No persistence guarantee
+
+* Logs are written **only to the console (stdout)**
+* No files, databases, or external logging systems
+* Event data is not stored
+* Service remains **fully stateless**
+
+---
+
 ## Edge-Case Handling
 
 * Invalid time window (`start_time >= end_time`)
@@ -273,3 +301,4 @@ All return appropriate HTTP error responses.
 
 **Assignment Complete & Submission Ready**
 
+---
