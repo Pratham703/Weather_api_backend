@@ -147,21 +147,6 @@ ISO-8601, 24-hour format
 7. If Risky or Unsafe, a better window is searched within the next 24 hours
 8. A structured, explainable response is returned
 
-
-
-## Time-Window Forecast Handling
-
-* Only forecast hours overlapping with the event window are considered
-* Filtering logic:
-
-```python
-event.start_time <= forecast_hour < event.end_time
-```
-
-* Ensures accurate handling of short or partial-hour events
-
-
-
 ## Weather Classification Rules
 
 ### Unsafe
