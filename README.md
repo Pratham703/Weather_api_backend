@@ -216,18 +216,7 @@ If no suitable window exists:
 
 
 
-## Example curl Request (Optional)
 
-```bash
-curl -X POST http://127.0.0.1:8000/event-forecast \
--H "Content-Type: application/json" \
--d '{
-  "name": "Football Match",
-  "location": { "latitude": 10.79, "longitude": 79.86 },
-  "start_time": "2026-01-13T07:00:00",
-  "end_time": "2026-01-13T09:00:00"
-}'
-```
 
 
 ## Edge-Case Handling
