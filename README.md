@@ -1,4 +1,4 @@
-# 🌦️ Event Weather Guard
+# Event Weather Guard
 
 **“Will It Rain During My Event?”**
 
@@ -7,7 +7,7 @@ If the event is risky or unsafe, the service also recommends a **better time win
 
 ---
 
-## 🚀 Features
+## Features
 
 * Accepts event details (location + time window)
 * Fetches **hourly weather forecast** from Open-Meteo
@@ -24,7 +24,7 @@ If the event is risky or unsafe, the service also recommends a **better time win
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 * **Python 3.10+**
 * **FastAPI**
@@ -34,16 +34,16 @@ If the event is risky or unsafe, the service also recommends a **better time win
 
 ---
 
-## 📦 Setup Instructions
+## Setup Instructions
 
-### 1️⃣ Clone the repository
+### Clone the repository
 
 ```bash
 git clone https://github.com/Pratham703/Weather_api_backend
 cd Weather_forecast
 ```
 
-### 2️⃣ Create and activate virtual environment
+### Create and activate virtual environment
 
 ```bash
 python -m venv .venv
@@ -51,13 +51,13 @@ source .venv/bin/activate   # macOS/Linux
 .venv\Scripts\activate      # Windows
 ```
 
-### 3️⃣ Install dependencies
+### Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4️⃣ Run the server
+### Run the server
 
 ```bash
 uvicorn app.main:app --reload
@@ -71,19 +71,19 @@ http://127.0.0.1:8000
 
 ---
 
-## 📘 API Documentation
+## API Documentation
 
 FastAPI provides built-in documentation:
-
+    This are port number running you may verify with your console and write/docs with it for Swagger UI
 * **Swagger UI**
-  👉 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+  ->[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
 * **OpenAPI JSON**
-  👉 [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json)
+  ->[http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json)
 
 ---
 
-## 🔌 API Endpoint
+##  API Endpoint
 
 ### `POST /event-forecast`
 
@@ -103,7 +103,7 @@ Generates a weather advisory for a **single event**.
 }
 ```
 
-⏰ **Datetime format**
+**Datetime format**
 ISO-8601, 24-hour format (`YYYY-MM-DDTHH:MM:SS`)
 
 ---
@@ -136,7 +136,7 @@ ISO-8601, 24-hour format (`YYYY-MM-DDTHH:MM:SS`)
 
 ---
 
-## 🔄 Project Workflow
+## Project Workflow
 
 1. Client sends event details (location + time window)
 2. Hourly forecast data is fetched from **Open-Meteo**
@@ -149,7 +149,7 @@ ISO-8601, 24-hour format (`YYYY-MM-DDTHH:MM:SS`)
 
 ---
 
-## ⏱ Time-Window Forecast Handling
+## Time-Window Forecast Handling
 
 * Only forecast hours overlapping with the event window are considered
 * Filtering logic:
@@ -162,9 +162,9 @@ event.start_time <= forecast_hour < event.end_time
 
 ---
 
-## 📏 Weather Classification Rules
+## Weather Classification Rules
 
-### ❌ Unsafe
+### Unsafe
 
 Triggered if **any hour** satisfies:
 
@@ -172,7 +172,7 @@ Triggered if **any hour** satisfies:
 * Heavy rain (`precipitation_mm ≥ 5`)
 * Extreme wind (`wind_speed > 40 km/h`)
 
-### ⚠️ Risky
+### Risky
 
 Triggered if **no Unsafe rules**, but any hour has:
 
@@ -180,7 +180,7 @@ Triggered if **no Unsafe rules**, but any hour has:
 * Moderate wind (`20–40 km/h`)
 * Light to moderate precipitation
 
-### ✅ Safe
+### Safe
 
 * None of the above conditions apply across the event window
 
@@ -188,7 +188,7 @@ Worst-case condition dominates the final classification.
 
 ---
 
-## 📊 Severity Score Logic (0–100)
+## Severity Score Logic (0–100)
 
 Severity score provides a numeric representation of risk.
 
@@ -209,7 +209,7 @@ Final score = **maximum severity across all event hours**
 
 ---
 
-## 🔁 Alternate Time Recommendation Logic
+## Alternate Time Recommendation Logic
 
 Applied **only if event is Risky or Unsafe**.
 
@@ -232,7 +232,7 @@ If no suitable window exists:
 
 ---
 
-## 🧪 Example curl Request (Optional)
+## Example curl Request (Optional)
 
 ```bash
 curl -X POST http://127.0.0.1:8000/event-forecast \
@@ -247,7 +247,7 @@ curl -X POST http://127.0.0.1:8000/event-forecast \
 
 ---
 
-## ⚠️ Edge-Case Handling
+## Edge-Case Handling
 
 * Invalid time window (`start_time >= end_time`)
 * No forecast data for event window
@@ -258,7 +258,7 @@ All return appropriate HTTP error responses.
 
 ---
 
-## 🔍 Key Assumptions & Trade-offs
+## Key Assumptions & Trade-offs
 
 * Uses Open-Meteo for free, reliable hourly data
 * No database or persistence
@@ -268,7 +268,7 @@ All return appropriate HTTP error responses.
 
 ---
 
-## 📌 Status
+## Status
 
-✅ **Assignment Complete & Submission Ready**
+**Assignment Complete & Submission Ready**
 
