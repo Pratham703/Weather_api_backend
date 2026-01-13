@@ -239,8 +239,6 @@ All return appropriate HTTP error responses.
 * Conservative weather-code mapping for safety
 
 
-## Status
 
-**Assignment Complete & Submission Ready**
 
 
