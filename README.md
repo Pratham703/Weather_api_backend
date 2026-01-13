@@ -6,8 +6,6 @@
 Event Weather Guard is a backend service that analyzes **hourly weather forecasts** for outdoor events and determines whether the event is **Safe**, **Risky**, or **Unsafe** using **deterministic and explainable rules**.
 If the event is risky or unsafe, the service recommends a **better time window within the next 24 hours**.
 
----
-
 ## Features
 
 * Accepts event details (location + time window)
@@ -23,7 +21,7 @@ If the event is risky or unsafe, the service recommends a **better time window w
 * No authentication
 * No persistence (fully stateless)
 
----
+
 
 ## Tech Stack
 
@@ -33,7 +31,7 @@ If the event is risky or unsafe, the service recommends a **better time window w
 * **Open-Meteo API** (public & free)
 * Async HTTP requests
 
----
+
 
 ## Setup Instructions
 
@@ -70,7 +68,7 @@ Server runs at:
 http://127.0.0.1:8000
 ```
 You may check server running on console accordingly.
----
+
 
 ## API Documentation
 
@@ -84,7 +82,7 @@ You may check server running on console accordingly.
 * **OpenAPI JSON**
   [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json)
 
----
+
 
 ## API Endpoint
 
@@ -109,7 +107,7 @@ Generates a weather advisory for a **single event**.
 **Datetime format**
 ISO-8601, 24-hour format (`YYYY-MM-DDTHH:MM:SS`)
 
----
+
 
 ### Example Response
 
@@ -137,7 +135,6 @@ ISO-8601, 24-hour format (`YYYY-MM-DDTHH:MM:SS`)
 }
 ```
 
----
 
 ## Project Workflow
 
@@ -150,7 +147,7 @@ ISO-8601, 24-hour format (`YYYY-MM-DDTHH:MM:SS`)
 7. If Risky or Unsafe, a better window is searched within the next 24 hours
 8. A structured, explainable response is returned
 
----
+
 
 ## Time-Window Forecast Handling
 
@@ -163,7 +160,7 @@ event.start_time <= forecast_hour < event.end_time
 
 * Ensures accurate handling of short or partial-hour events
 
----
+
 
 ## Weather Classification Rules
 
@@ -188,7 +185,7 @@ Triggered if **no Unsafe rules**, but any hour has:
 * None of the above conditions apply across the event window
 * Worst-case condition dominates the final classification
 
----
+
 
 ## Severity Score Logic (0–100)
 
@@ -209,7 +206,7 @@ Final score = **maximum severity across all event hours**
 | 21–60  | Risky   |
 | 61–100 | Unsafe  |
 
----
+
 
 ## Alternate Time Recommendation Logic
 
@@ -232,7 +229,7 @@ If no suitable window exists:
 "recommended_alternate_window": null
 ```
 
----
+
 
 ## Example curl Request (Optional)
 
@@ -247,34 +244,6 @@ curl -X POST http://127.0.0.1:8000/event-forecast \
 }'
 ```
 
----
-
-## Console Logging (Observability)
-
-The service includes **lightweight console logging** for observability and debugging.
-
-### What is logged
-
-* Incoming event forecast requests
-* Classification results (Safe / Risky / Unsafe)
-* Severity score outcomes
-* Alternate time window recommendations
-* Validation and processing errors
-
-### Why logging is used
-
-* Trace request flow and decision-making
-* Debug rule evaluation and recommendations
-* Improve transparency during local testing
-
-### No persistence guarantee
-
-* Logs are written **only to the console (stdout)**
-* No files, databases, or external logging systems
-* Event data is not stored
-* Service remains **fully stateless**
-
----
 
 ## Edge-Case Handling
 
@@ -285,7 +254,7 @@ The service includes **lightweight console logging** for observability and debug
 
 All return appropriate HTTP error responses.
 
----
+
 
 ## Key Assumptions & Trade-offs
 
@@ -295,10 +264,9 @@ All return appropriate HTTP error responses.
 * Recommendation limited to next 24 hours
 * Conservative weather-code mapping for safety
 
----
 
 ## Status
 
 **Assignment Complete & Submission Ready**
 
----
+
