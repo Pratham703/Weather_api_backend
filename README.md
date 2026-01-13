@@ -76,7 +76,7 @@ You may check server running on console accordingly.
 
 ###FastAPI provides built-in documentation:
 
-    ## Note-Check console for server running port check and then apply /docs ahead to get swagger UI
+    ### Note-Check console for server running port check and then apply /docs ahead to get swagger UI
 
 * **Swagger UI**
   [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
