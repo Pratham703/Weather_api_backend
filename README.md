@@ -105,7 +105,7 @@ Generates a weather advisory for a **single event**.
 ```
 
 **Datetime format**
-ISO-8601, 24-hour format (`YYYY-MM-DDTHH:MM:SS`)
+ISO-8601, 24-hour format
 
 
 
