@@ -4,7 +4,7 @@ def evaluate_weather_rules(forecast):
     reasons = []
     classification = "Safe"
 
-    #Unsafe rules
+    
     for hour in forecast:
         if hour["weathercode"] in THUNDER_CODES:
             return "Unsafe", ["Thunderstorm expected"]
@@ -15,7 +15,7 @@ def evaluate_weather_rules(forecast):
         if hour["wind_kmh"] >= 40:
             return "Unsafe", ["Very high wind speed (>=40 km/h)"]
 
-    #Risky rules
+    
     for hour in forecast:
         if hour["rain_prob"] >= 60:
             reasons.append(
